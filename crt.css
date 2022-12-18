@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+body,
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    display: grid;
+    place-content: center;
+
+    background-color: hsl(120deg, 50%, 3%);
+
+    /* background-image: repeating-linear-gradient(); */
+}
+
+.crt-tv{
+    --clr-crt-tv-frame: #333;
+    --clr-crt-tv-border: #222;
+    --clr-crt-tv-display: hsl(120, 30%, 2%);
+
+    --crt-tv-frame-width: 5rem;
+
+    position: relative;
+    width: 60rem;
+    height: 45rem;
+
+    scale: 1.5;
+}
+
+.crt-tv__frame{
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: var(--clr-crt-tv-frame);
+
+    border-radius: 2rem 2rem 0 0;
+
+    box-shadow: inset 0 0 1.5rem .1rem #0005;
+}
+
+.crt-tv__border{
+    width: calc(100% - var(--crt-tv-frame-width));
+    height: calc(100% - var(--crt-tv-frame-width));
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 2rem 2rem 0 0;
+
+    box-shadow: 0 0 1.5rem .1rem #0005;
+
+    background-color: var(--clr-crt-tv-border);
+    background-image: 
+        linear-gradient(to bottom right, #0000 0%, #0000 45%, #0005 50%, #0000 55%, #0000 100%),
+        linear-gradient(to top right, #0000 0%, #0000 45%, #0005 50%, #0000 55%, #0000 100%);
+}
+
+.crt-tv__display{
+    width: 75%;
+    height: 75%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 1rem;
+    
+    background-color: var(--clr-crt-tv-display);
+
+    border-radius: 3rem;
+
+    box-shadow: 
+        0 0 1rem #000,
+        inset 0 0 1rem #000;
+
+    overflow: hidden;
+
+    color: white;
+    text-shadow: 
+        0 0 .2rem currentColor,
+        0 0 .5rem currentColor;
+}
+
+
+.crt-tv__display::after{
+    content: '';
+
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
+.crt-tv__display::before{
+    content: '';
+
+    position: absolute;
+    z-index: 110;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: radial-gradient(#fff1, #0000 60%);
+    pointer-events: none;
+}
+
+
+.cursor{
+    width: 1ch;
+    height: 1rem;
+    /* background-color: currentColor; */
+    animation: .5s cursor-flicker infinite alternate;
+}
+
+@keyframes cursor-flicker {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
